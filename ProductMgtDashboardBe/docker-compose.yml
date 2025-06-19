@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  sqlite3:
+    image: keinos/sqlite3:3.50.1
+    container_name: product-mgr-dashboard-db
+    ports:
+      - "1433:1433"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./product-mgr-dashboard-db/:/root/db/
