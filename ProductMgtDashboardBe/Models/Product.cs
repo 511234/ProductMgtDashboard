@@ -4,8 +4,17 @@ namespace ProductMgtDashboardBe.Models.Entities;
 
 public class Product
 {
-    [Key]
-    public required string ProductCode { get; set; }
+    // public Product(string productCode, string name, float price, int stockQuantity, ProductCategory category)
+    // {
+    //     ProductCode = productCode;
+    //     Name = name;
+    //     Price = price;
+    //     StockQuantity = stockQuantity;
+    //     Category = category;
+    // }
+
+    [Key] public required string ProductCode { get; set; }
+
     public string Name { get; set; } = string.Empty;
     public float Price { get; set; }
     public int StockQuantity { get; set; }

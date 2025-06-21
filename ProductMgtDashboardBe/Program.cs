@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ProductMgtDashboardBe.Database;
+using ProductMgtDashboardBe.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -27,8 +27,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
-
-// app.MapGet("/", () => "Hello World!");
 
 app.Run();

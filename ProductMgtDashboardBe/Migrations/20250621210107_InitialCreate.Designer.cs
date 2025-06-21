@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProductMgtDashboardBe.Database;
+using ProductMgtDashboardBe.Data;
 
 #nullable disable
 
 namespace ProductMgtDashboardBe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250619092321_InitialCreate")]
+    [Migration("20250621210107_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

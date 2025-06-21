@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProductMgtDashboardBe.Models.Entities;
 
-namespace ProductMgtDashboardBe.Database;
+namespace ProductMgtDashboardBe.Data;
 
 public class ApplicationDbContext: DbContext
 {
