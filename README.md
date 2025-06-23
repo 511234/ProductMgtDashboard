@@ -45,3 +45,11 @@ http://localhost:5173
 
 `GET /api/Product/quantity/all`
 > Get a list of product categories and each of their total quantity
+
+## Screenshots:
+OpenAPI:
+![OpenAPI screenshot](Screenshots/Screenshot-openapi.png)
+
+
+Frontend dashboard:
+![frontend screenshot](Screenshots/Screenshot-fe.png)
