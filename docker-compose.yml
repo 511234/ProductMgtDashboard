@@ -2,6 +2,7 @@ version: '3.4'
 
 services:
   product-mgt-dashboard-be:
+    container_name: product-mgt-dashboard-be
     image: ${DOCKER_REGISTRY-}productmgtdashboardbe
     build:
       context: .
@@ -16,16 +17,11 @@ services:
       - ./ProductMgtDashboardBe/sqlite3.db:/ProductMgtDashboardBe/sqlite3.db
 
   product-mgt-dashboard-fe:
+    container_name: product-mgt-dashboard-fe
     build:
       context: .
       dockerfile: ProductMgtDashboardFe/Dockerfile
     ports:
-      - '5173:5173'
-    volumes:
-      - ./ProductMgtDashboardFe:/app
-      - ./ProductMgtDashboardFe/node_modules:/app/node_modules
+      - 5173:5173
     environment:
       NODE_ENV: development
-    stdin_open: true
-    tty: true
-    command: npm run dev
