@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { BarChart } from '@mui/x-charts'
-import { DataGrid } from '@mui/x-data-grid'
-import "./App.css"
+import { DataGrid, type GridColDef } from '@mui/x-data-grid'
+import './App.css'
+
+type ProductListData = any
 
 function App() {
   const PRODUCT_CATEGORY = {
@@ -11,11 +13,10 @@ function App() {
     3: 'Health',
   }
 
-  const [productList, setProductList] = useState([])
+  const [productList, setProductList] = useState<ProductListData>([])
   const [productQuantityList, setProductQuantityList] = useState([])
-  const [chartQuantityList, setChartQuantityList] = useState([])
-  const [xAxis, setXAsis] = useState([])
-  const columns: any = [
+
+  const columns: GridColDef<ProductListData>[] = [
     { field: 'productCode', headerName: 'ID', width: 120 },
     {
       field: 'name',
@@ -25,7 +26,7 @@ function App() {
     {
       field: 'price',
       headerName: 'Price',
-      type: 'decimal',
+      type: 'number',
       width: 150,
     },
     {
@@ -39,7 +40,16 @@ function App() {
       headerName: 'Category',
       type: 'string',
       width: 150,
+      // getApplyQuickFilterFn: (value) => {
+      //   return (params) => {
+      //     console.log('value', value)
+      //     console.log('params', params)
+      //     return params.value === value
+      //   }
+      // },
+      // renderCell: (params) => <>{PRODUCT_CATEGORY[params.value]}</>,
       valueFormatter: (value) => PRODUCT_CATEGORY[value],
+      // filterOperators: getGridStringOperators().filter((operator) => )
     },
     {
       field: 'createdAt',
@@ -50,12 +60,11 @@ function App() {
     },
   ]
 
-  const rows = productList
-
-  useMemo(() => {
-    setXAsis(productQuantityList.map((c) => c.categoryName))
-    setChartQuantityList(productQuantityList.map((c) => c.quantity))
-  }, [productQuantityList])
+  const xAxis = useMemo(() => productQuantityList.map((c) => c.categoryName), [productQuantityList])
+  const chartQuantityList = useMemo(
+    () => productQuantityList.map((c) => c.quantity),
+    [productQuantityList],
+  )
 
   useEffect(() => {
     const getData = async () => {
@@ -82,10 +91,10 @@ function App() {
 
   return (
     <>
-      <div></div>
+      <h1>Product Management Dashboard</h1>
       <h2>List of Products</h2>
-      <DataGrid
-        rows={rows}
+      <DataGrid<ProductListData>
+        rows={productList}
         columns={columns}
         getRowId={(row) => row.productCode}
         initialState={{
