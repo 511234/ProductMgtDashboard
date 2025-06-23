@@ -12,12 +12,12 @@
 
 1. Download repository
 ```
-git clone git@github.com:511234/ProductMgtDashboardBe.git
+git clone git@github.com:511234/ProductMgtDashboard.git
 ```
 
 2. Run the following commands to build and run docker container:
 ```
-cd ProductMgtDashboardBe
+cd ProductMgtDashboard
 docker-compose up -d
 ```
 
@@ -25,7 +25,7 @@ docker-compose up -d
 http://localhost:8001
 
 4. Access Frontend to view Product data table and Product Quantity bar chart at:  
-http://localhost:5173/
+http://localhost:5173
 
 ## Endpoints:
 `GET /api/Product`
