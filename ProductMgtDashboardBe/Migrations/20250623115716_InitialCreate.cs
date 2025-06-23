@@ -19,7 +19,7 @@ namespace ProductMgtDashboardBe.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<float>(type: "REAL", nullable: false),
                     StockQuantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    Category = table.Column<int>(type: "INTEGER", nullable: false),
+                    Category = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

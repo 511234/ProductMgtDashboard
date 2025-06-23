@@ -6,12 +6,6 @@ import './App.css'
 type ProductListData = any
 
 function App() {
-  const PRODUCT_CATEGORY = {
-    0: 'Food',
-    1: 'Electronics',
-    2: 'Clothes',
-    3: 'Health',
-  }
 
   const [productList, setProductList] = useState<ProductListData>([])
   const [productQuantityList, setProductQuantityList] = useState([])
@@ -40,16 +34,6 @@ function App() {
       headerName: 'Category',
       type: 'string',
       width: 150,
-      // getApplyQuickFilterFn: (value) => {
-      //   return (params) => {
-      //     console.log('value', value)
-      //     console.log('params', params)
-      //     return params.value === value
-      //   }
-      // },
-      // renderCell: (params) => <>{PRODUCT_CATEGORY[params.value]}</>,
-      valueFormatter: (value) => PRODUCT_CATEGORY[value],
-      // filterOperators: getGridStringOperators().filter((operator) => )
     },
     {
       field: 'createdAt',
@@ -60,7 +44,7 @@ function App() {
     },
   ]
 
-  const xAxis = useMemo(() => productQuantityList.map((c) => c.categoryName), [productQuantityList])
+  const xAxis = useMemo(() => productQuantityList.map((c) => c.category), [productQuantityList])
   const chartQuantityList = useMemo(
     () => productQuantityList.map((c) => c.quantity),
     [productQuantityList],

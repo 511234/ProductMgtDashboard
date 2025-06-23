@@ -27,8 +27,8 @@ public class ProductControllerTest : IDisposable
         context.Database.EnsureCreated();
 
         context.AddRange(
-            new Product { ProductCode = "SD98A1I", Name = "Apples 6" },
-            new Product { ProductCode = "K48AQ8Z", Name = "Chocolate bar 200g" });
+            new Product { ProductCode = "SD98A1I", Name = "Apples 6", Category = "Food"},
+            new Product { ProductCode = "K48AQ8Z", Name = "Chocolate bar 200g", Category = "Food"});
         context.SaveChanges();
     }
 
@@ -93,7 +93,7 @@ public class ProductControllerTest : IDisposable
         var newProduct = new Product
         {
             ProductCode = "D81JZ0A", Name = "Herbal Tea 20 bags", Price = 3, StockQuantity = 54,
-            Category = ProductCategory.Food
+            Category = "Food"
         };
         var res = (await controller.AddProduct(newProduct)).Result as OkObjectResult;
         res.Should().NotBeNull();
@@ -111,7 +111,7 @@ public class ProductControllerTest : IDisposable
         var newProduct = new Product
         {
             ProductCode = "SD98A1I", Name = "Herbal Tea 20 bags", Price = 3, StockQuantity = 54,
-            Category = ProductCategory.Food
+            Category = "Food"
         };
         var res = (await controller.AddProduct(newProduct)).Result;
         res.Should().BeOfType<UnprocessableEntityObjectResult>();
@@ -126,7 +126,7 @@ public class ProductControllerTest : IDisposable
         var updateProduct = new Product
         {
             ProductCode = "K48AQ8Z", Name = "Chocolate bar 200g", Price = 2, StockQuantity = 39,
-            Category = ProductCategory.Food
+            Category = "Food"
         };
         var res = (await controller.UpdateProduct(updateProduct)).Result;
         res.Should().BeOfType<OkObjectResult>();

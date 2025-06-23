@@ -56,20 +56,11 @@ public class ProductController : ControllerBase
             .GroupBy(p => p.Category)
             .Select(group => new
             {
-                categoryId = group.Key,
+                category = group.Key,
                 quantity = group.Count()
             })
             .ToListAsync();
-
-        var result = productCountList
-            .Select(g => new
-            {
-                CategoryId = (int)g.categoryId,
-                CategoryName = Enum.GetName(typeof(ProductCategory), g.categoryId),
-                Quantity = g.quantity
-            })
-            .ToList();
-        return Ok(result);
+        return Ok(productCountList);
     }
 
     // Add a new product

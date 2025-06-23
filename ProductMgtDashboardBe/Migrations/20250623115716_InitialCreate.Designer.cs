@@ -11,7 +11,7 @@ using ProductMgtDashboardBe.Data;
 namespace ProductMgtDashboardBe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250621210107_InitialCreate")]
+    [Migration("20250623115716_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,13 +20,14 @@ namespace ProductMgtDashboardBe.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.17");
 
-            modelBuilder.Entity("ProductMgtDashboardBe.Models.Entities.Product", b =>
+            modelBuilder.Entity("ProductMgtDashboardBe.Models.Product", b =>
                 {
                     b.Property<string>("ProductCode")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Category")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
