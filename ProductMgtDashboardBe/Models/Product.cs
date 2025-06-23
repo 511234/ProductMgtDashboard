@@ -1,18 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ProductMgtDashboardBe.Models.Entities;
+namespace ProductMgtDashboardBe.Models;
 
 public class Product
 {
-    // public Product(string productCode, string name, float price, int stockQuantity, ProductCategory category)
-    // {
-    //     ProductCode = productCode;
-    //     Name = name;
-    //     Price = price;
-    //     StockQuantity = stockQuantity;
-    //     Category = category;
-    // }
-
     [Key] public required string ProductCode { get; set; }
 
     public string Name { get; set; } = string.Empty;
@@ -21,3 +12,18 @@ public class Product
     public ProductCategory Category { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 }
+
+// public class ProductCategoryQuantityDTO
+// {
+//     public ProductCategoryQuantityDTO(ProductCategory category, int quantity)
+//     {
+//         Quantity = quantity;
+//         CategoryId = (int)category;
+//         CategoryName = "";
+//     }
+
+//     public int Quantity { get; set; }
+
+//     public int CategoryId { get; set; }
+//     public string CategoryName { get; set; }
+// }

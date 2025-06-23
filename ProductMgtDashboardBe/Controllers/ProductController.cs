@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductMgtDashboardBe.Data;
 using ProductMgtDashboardBe.Models;
-using ProductMgtDashboardBe.Models.Entities;
 
 namespace ProductMgtDashboardBe.Controllers;
 
@@ -51,7 +50,7 @@ public class ProductController : ControllerBase
 
     // Get total product quantity of all categories, grouped by category
     [HttpGet("quantity/all")]
-    public async Task<ActionResult<Product>> GetProductQuantityAllCategories()
+    public async Task<ActionResult<List<Product>>> GetProductQuantityAllCategories()
     {
         var productCountList = await _applicationDbContext.Products
             .GroupBy(p => p.Category)

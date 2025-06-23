@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using ProductMgtDashboardBe.Controllers;
 using ProductMgtDashboardBe.Data;
 using ProductMgtDashboardBe.Models;
-using ProductMgtDashboardBe.Models.Entities;
 
 namespace ProductMgtDashboardBeTests.Controllers;
 
@@ -73,6 +72,16 @@ public class ProductControllerTest : IDisposable
         var product = res.Value as Product;
         product.ProductCode.Should().Be("K48AQ8Z");
         product.Name.Should().Be("Chocolate bar 200g");
+    }
+
+    [Fact]
+    public async Task GetProductQuantityAllCategories_Success_ReturnsProduct()
+    {
+        await using var context = new ApplicationDbContext(_contextOptions);
+        var controller = new ProductController(context);
+
+        var res = (await controller.GetProductQuantityAllCategories()).Result as OkObjectResult;
+        res.Should().NotBeNull();
     }
 
     [Fact]
