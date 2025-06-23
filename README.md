@@ -21,10 +21,10 @@ cd ProductMgtDashboardBe
 docker-compose up -d
 ```
 
-3. Access OpenAPI documentation to test different endpoints at:
+3. Access OpenAPI documentation to test different endpoints at:  
 http://localhost:8001
 
-4. Access Frontend to view Product data table and Product Quantity bar chart at:
+4. Access Frontend to view Product data table and Product Quantity bar chart at:  
 http://localhost:5173/
 
 ## Endpoints:
