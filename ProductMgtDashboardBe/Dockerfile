@@ -1,20 +1,17 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-WORKDIR /app
+﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /ProductMgtDashboardBe
+
+# Copy everything
+COPY . ./
+# Restore as distinct layers
+RUN dotnet restore
+# Build and publish a release
+RUN dotnet publish -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /ProductMgtDashboardBe
+COPY --from=build /ProductMgtDashboardBe/out .
 EXPOSE 80
 EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
-COPY ["ProductMgtDashboardBe/ProductMgtDashboardBe.csproj", "ProductMgtDashboardBe/"]
-RUN dotnet restore "ProductMgtDashboardBe/ProductMgtDashboardBe.csproj"
-COPY . .
-WORKDIR "/src/ProductMgtDashboardBe"
-RUN dotnet build "ProductMgtDashboardBe.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "ProductMgtDashboardBe.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "ProductMgtDashboardBe.dll"]

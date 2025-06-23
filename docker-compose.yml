@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  product-mgt-dashboard-db:
+    container_name: db
+    image: keinos/sqlite3:3.50.1
+    stdin_open: true
+    tty: true
+    volumes:
+     - ./ProductMgtDashboardBe/sqlite3.db:/root/db/
+  
+  product-mgt-dashboard-be:
+   image: ${DOCKER_REGISTRY-}productmgtdashboardbe
+   build:
+     context: .
+     dockerfile: ProductMgtDashboardBe/Dockerfile
+   ports:
+      - 8001:8001
+   links:
+      - db
+   environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8001
+      - ASPNETCORE_URLS=http://+:8001
